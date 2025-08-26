@@ -1,1 +1,27 @@
 @import 'tailwindcss';
+
+@theme {
+  --color-waterGreen: oklch(0.7839 0.1295 186.06);
+  --color-coalBlack: oklch(0.2404 0.0015 17.26);
+  --color-coldWhite: oklch(0.956 0.004 286.32);
+  --color-mediumBlue: oklch(0.6322 0.0736 262.68);
+  --color-bluishPurple: oklch(0.5871 0.2112 284.32);
+  --color-neutralGray: oklch(0.6301 0 0);
+  --color--darkGray: oklch(0.3883 0.0036 308.36);
+  --color-brandWhite: oklch(1 0 0);
+  --color-lightGray: oklch(0.9219 0 0);
+
+  --spacing-buttonSize: 4.375rem;
+  --spacing-ConteinerW: 25.6875rem;
+  --spacing-ConteinerButtonsH: 33.25rem;
+  --spacing-ContButtonWVariant: 9.985rem;
+  --spacing-ConteinerDyplayH: 18.1875rem;
+  --spacing-ConteinerDadH: 51.4375rem;
+
+  --text-sizeButton: 2.25rem;
+  --text-sizeResult: 4rem;
+}
+
+body {
+  font-family: 'Oswald', sans-serif;
+}

@@ -1,7 +1,9 @@
 function App() {
   return (
-    <div>
-      <h1 className="bg-blue-600 p-7 text-center text-xl">Calculator</h1>
+    <div className="bg-lightGray h-screen w-full">
+      <button className="w-buttonSize h-buttonSize bg-coldWhite text-sizeButton text-mediumBlue m-5 rounded-2xl shadow-lg">
+        +
+      </button>
     </div>
   )
 }
