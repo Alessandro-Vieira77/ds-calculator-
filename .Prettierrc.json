@@ -10,6 +10,6 @@
   "bracketSameLine": false,
   "quoteProps": "as-needed",
   "endOfLine": "lf",
-  "plugins": ["prettier-plugin-tailwindcss"]
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindFunctions": ["tv"]
 }
-
