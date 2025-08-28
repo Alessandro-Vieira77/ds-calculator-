@@ -1,6 +1,6 @@
 import { tv } from 'tailwind-variants'
 
-const Button = ({ children, color, bg, width, calculte, value }) => {
+const Button = ({ children, color, bg, width, addSumValues, value }) => {
   const button = tv({
     base: 'cursor-pointer rounded-2xl px-5 py-4 text-4xl shadow-lg',
     variants: {
@@ -29,7 +29,7 @@ const Button = ({ children, color, bg, width, calculte, value }) => {
   return (
     <button
       onClick={() => {
-        calculte(value)
+        addSumValues(value)
       }}
       className={button({ bg, color, width: width })}
     >

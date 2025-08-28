@@ -5,32 +5,52 @@ function App() {
   // armazenamento temporário
   const [number, setNUmber] = useState([])
   // exibir as somas na tela
-  const [operantions, setOperantions] = useState([])
+  const [operations, setOperations] = useState([])
   // os némros que serão somados
-  const [numberBox, setNamberBox] = useState([])
+  const [operationFirst, setOperantionFirst] = useState(0)
   // resultado das somas
-  const [resul, setResul] = useState([])
-  const [indetifierOperantion, setIndetifierOperantion] = useState('')
+  const [resul, setResul] = useState(0)
+  const [indetifierOperation, setIndetifierOperation] = useState('')
 
-  function calculte(value) {
+  function addSumValues(value) {
     if (value === '+') {
-      setIndetifierOperantion('adição')
-      setOperantions([...operantions, ' + '])
+      setIndetifierOperation('adição')
+      setOperations([...operations, ' + '])
       // guarda o primeiro valor a ser somado
-      setNamberBox([...numberBox, Number(number.join(''))])
+      setOperantionFirst(Number(number.join('')))
       setNUmber([])
     }
     if (typeof value === 'number') {
       setNUmber([...number, value])
     }
-    setOperantions([...operantions, value])
+    setOperations([...operations, value])
   }
 
-  function calculateSum() {}
+  let operantionSecond = 0
 
-  // console.log(`box: ${numberBox}`)
-  // console.log('number ' + number)
-  // console.log('operantions ' + indetifierOperantion)
+  function calculateSum() {
+    operantionSecond = Number(number.join(''))
+
+    if (indetifierOperation === 'adição') {
+      if (resul === 0) {
+        let sum = operationFirst + operantionSecond
+        setResul(sum)
+        setIndetifierOperation('')
+      }
+
+      if (resul > 0) {
+        let add = resul + operantionSecond
+        setResul(add)
+        setIndetifierOperation('')
+      }
+    }
+
+    if (indetifierOperation === 'subtração') {
+      setOperantionFirst(resul)
+    }
+  }
+
+  console.log(indetifierOperation)
 
   return (
     <div className="items-centerbg-lightGray my-5 flex min-h-screen w-full items-center justify-center">
@@ -40,9 +60,9 @@ function App() {
             <input
               className="text-mediumBlue w-full text-right text-4xl"
               type="text"
-              defaultValue={operantions.join('')}
+              defaultValue={operations.join('')}
             />
-            <p className="text-lightGray text-6xl">1260</p>
+            <p className="text-lightGray text-6xl">{resul}</p>
           </div>
         </div>
 
@@ -54,49 +74,44 @@ function App() {
             <Button color={'secundary'}>*/-</Button>
             <Button color={'secundary'}>%</Button>
             <Button color={'third'}>/</Button>
-            <Button calculte={calculte} value={7}>
+            <Button addSumValues={addSumValues} value={7}>
               7
             </Button>
-            <Button calculte={calculte} value={8}>
+            <Button addSumValues={addSumValues} value={8}>
               8
             </Button>
-            <Button calculte={calculte} value={9}>
+            <Button addSumValues={addSumValues} value={9}>
               9
             </Button>
             <Button color={'third'}>x</Button>
-            <Button calculte={calculte} value={4}>
+            <Button addSumValues={addSumValues} value={4}>
               4
             </Button>
-            <Button calculte={calculte} value={5}>
+            <Button addSumValues={addSumValues} value={5}>
               5
             </Button>
-            <Button calculte={calculte} value={6}>
+            <Button addSumValues={addSumValues} value={6}>
               6
             </Button>
             <Button color={'third'}>-</Button>
-            <Button calculte={calculte} value={1}>
+            <Button addSumValues={addSumValues} value={1}>
               1
             </Button>
-            <Button calculte={calculte} value={2}>
+            <Button addSumValues={addSumValues} value={2}>
               2
             </Button>
-            <Button calculte={calculte} value={3}>
+            <Button addSumValues={addSumValues} value={3}>
               3
             </Button>
-            <Button color={'third'} calculte={calculte} value={'+'}>
+            <Button color={'third'} addSumValues={addSumValues} value={'+'}>
               +
             </Button>
-            <Button width={'secundary'} calculte={calculte} value={0}>
+            <Button width={'secundary'} addSumValues={addSumValues} value={0}>
               0
             </Button>
             <Button>.</Button>
-            {/* <Button bg={'secundary'} color={'first'}>
-              =
-            </Button> */}
             <button
-              onClick={() => {
-                console.log('ok')
-              }}
+              onClick={calculateSum}
               className="bg-waterGreen w-buttonSize text-brandWhite cursor-pointer rounded-2xl px-5 py-4 text-center text-4xl shadow-lg"
             >
               =
