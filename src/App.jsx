@@ -26,6 +26,8 @@ function App() {
     setOperantions([...operantions, value])
   }
 
+  function calculateSum() {}
+
   // console.log(`box: ${numberBox}`)
   // console.log('number ' + number)
   // console.log('operantions ' + indetifierOperantion)
@@ -88,9 +90,17 @@ function App() {
               0
             </Button>
             <Button>.</Button>
-            <Button bg={'secundary'} color={'first'}>
+            {/* <Button bg={'secundary'} color={'first'}>
               =
-            </Button>
+            </Button> */}
+            <button
+              onClick={() => {
+                console.log('ok')
+              }}
+              className="bg-waterGreen w-buttonSize text-brandWhite cursor-pointer rounded-2xl px-5 py-4 text-center text-4xl shadow-lg"
+            >
+              =
+            </button>
           </div>
         </div>
       </div>
