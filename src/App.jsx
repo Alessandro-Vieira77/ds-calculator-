@@ -6,13 +6,14 @@ function App() {
   const [number, setNUmber] = useState([])
   // exibir as somas na tela
   const [operations, setOperations] = useState([])
-  // os némros que serão somados
+  // os númros que serão somados
   const [operationFirst, setOperantionFirst] = useState(0)
   // resultado das somas
   const [resul, setResul] = useState(0)
   const [indetifierOperation, setIndetifierOperation] = useState('')
 
   function addSumValues(value) {
+    // adição
     if (value === '+') {
       setIndetifierOperation('adição')
       setOperations([...operations, ' + '])
@@ -20,6 +21,14 @@ function App() {
       setOperantionFirst(Number(number.join('')))
       setNUmber([])
     }
+    // subtração
+    if (value === '-') {
+      setIndetifierOperation('subtração')
+      setOperations([...operations, ' - '])
+      setOperantionFirst(Number(number.join('')))
+      setNUmber([])
+    }
+
     if (typeof value === 'number') {
       setNUmber([...number, value])
     }
@@ -30,27 +39,33 @@ function App() {
 
   function calculateSum() {
     operantionSecond = Number(number.join(''))
-
+    // adição
     if (indetifierOperation === 'adição') {
-      if (resul === 0) {
+      if (resul === 0 && indetifierOperation === 'adição') {
         let sum = operationFirst + operantionSecond
         setResul(sum)
         setIndetifierOperation('')
       }
-
       if (resul > 0) {
         let add = resul + operantionSecond
         setResul(add)
         setIndetifierOperation('')
       }
     }
-
+    // sunbtração
     if (indetifierOperation === 'subtração') {
-      setOperantionFirst(resul)
+      if (resul === 0 && indetifierOperation === 'subtração') {
+        let sub = operantionSecond - resul
+        setResul(sub)
+        setIndetifierOperation('')
+      }
+      if (resul > 0 && indetifierOperation === 'subtração') {
+        let sub = resul - operantionSecond
+        setResul(sub)
+        setIndetifierOperation('')
+      }
     }
   }
-
-  console.log(indetifierOperation)
 
   return (
     <div className="items-centerbg-lightGray my-5 flex min-h-screen w-full items-center justify-center">
@@ -93,7 +108,9 @@ function App() {
             <Button addSumValues={addSumValues} value={6}>
               6
             </Button>
-            <Button color={'third'}>-</Button>
+            <Button color={'third'} addSumValues={addSumValues} value={'-'}>
+              -
+            </Button>
             <Button addSumValues={addSumValues} value={1}>
               1
             </Button>
