@@ -28,6 +28,20 @@ function App() {
       setOperantionFirst(Number(number.join('')))
       setNUmber([])
     }
+    // multiplicação
+    if (value === 'x') {
+      setIndetifierOperation('multiplicação')
+      setOperations([...operations, ' x '])
+      setOperantionFirst(Number(number.join('')))
+      setNUmber([])
+    }
+    // divisão
+    if (value === '/') {
+      setIndetifierOperation('divisão')
+      setOperations([...operations, ' / '])
+      setOperantionFirst(Number(number.join('')))
+      setNUmber([])
+    }
 
     if (typeof value === 'number') {
       setNUmber([...number, value])
@@ -40,18 +54,18 @@ function App() {
   function calculateSum() {
     operantionSecond = Number(number.join(''))
     // adição
-    if (indetifierOperation === 'adição') {
-      if (resul === 0 && indetifierOperation === 'adição') {
-        let sum = operationFirst + operantionSecond
-        setResul(sum)
-        setIndetifierOperation('')
-      }
-      if (resul > 0) {
-        let add = resul + operantionSecond
-        setResul(add)
-        setIndetifierOperation('')
-      }
+
+    if (resul === 0 && indetifierOperation === 'adição') {
+      let sum = operationFirst + operantionSecond
+      setResul(sum)
+      setIndetifierOperation('')
     }
+    if (resul > 0) {
+      let add = resul + operantionSecond
+      setResul(add)
+      setIndetifierOperation('')
+    }
+
     // sunbtração
     if (indetifierOperation === 'subtração') {
       if (resul === 0 && indetifierOperation === 'subtração') {
@@ -65,6 +79,51 @@ function App() {
         setIndetifierOperation('')
       }
     }
+    // multiplicação
+    if (indetifierOperation === 'multiplicação') {
+      if (resul === 0 && indetifierOperation === 'multiplicação') {
+        let mul = operationFirst * operantionSecond
+        setResul(mul)
+        setIndetifierOperation('')
+      }
+      if (resul > 0 && indetifierOperation === 'multiplicação') {
+        let mul = operationFirst * operantionSecond
+        setResul(mul)
+        setIndetifierOperation('')
+      }
+    }
+    // divisão
+    if (resul === 0 && indetifierOperation === 'divisão') {
+      let div = operationFirst / operantionSecond
+
+      if (operationFirst === 0 || operantionSecond === 0) {
+        return setResul('zero não é um número divisivel')
+      }
+
+      if (div % 2 !== 0) {
+        const number = Number(div.toFixed(2))
+        return setResul(number)
+      }
+
+      setResul(div)
+
+      setIndetifierOperation('')
+    }
+    if (resul > 0 && indetifierOperation === 'divisão') {
+      let div = resul / operantionSecond
+
+      if (operationFirst === 0 || operantionSecond === 0) {
+        return setResul('zero não é um número divisivel')
+      }
+
+      if (div % 2 !== 0) {
+        const number = Number(div.toFixed(2))
+        return setResul(number)
+      }
+
+      setResul(div)
+      setIndetifierOperation('')
+    }
   }
 
   return (
@@ -77,7 +136,15 @@ function App() {
               type="text"
               defaultValue={operations.join('')}
             />
-            <p className="text-lightGray text-6xl">{resul}</p>
+            <p
+              className={
+                typeof resul === 'number'
+                  ? 'text-lightGray w-full text-right text-6xl'
+                  : 'text-3xl text-red-500'
+              }
+            >
+              {resul}
+            </p>
           </div>
         </div>
 
@@ -88,7 +155,9 @@ function App() {
             <Button color={'secundary'}>C</Button>
             <Button color={'secundary'}>*/-</Button>
             <Button color={'secundary'}>%</Button>
-            <Button color={'third'}>/</Button>
+            <Button color={'third'} addSumValues={addSumValues} value={'/'}>
+              /
+            </Button>
             <Button addSumValues={addSumValues} value={7}>
               7
             </Button>
@@ -98,7 +167,9 @@ function App() {
             <Button addSumValues={addSumValues} value={9}>
               9
             </Button>
-            <Button color={'third'}>x</Button>
+            <Button color={'third'} addSumValues={addSumValues} value={'x'}>
+              x
+            </Button>
             <Button addSumValues={addSumValues} value={4}>
               4
             </Button>
